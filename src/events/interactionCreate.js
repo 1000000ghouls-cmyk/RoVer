@@ -1,4 +1,4 @@
-import { Events, MessageFlags } from 'discord.js';
+import { Events, MessageFlags, ActionRowBuilder, ButtonBuilder, ButtonStyle } from 'discord.js';
 import { logger } from '../utils/logger.js';
 import { getGuildConfig } from '../services/config/guildConfig.js';
 import {
@@ -334,7 +334,25 @@ export default {
             return;
           }
 
-          const [customId, ...args] = interaction.customId.split(':');
+          if (interaction.customId === 'verify_update_roles' || interaction.customId === 'verify_user') {
+      const getVerifiedEmbed = {
+        description: "👋 You must be new! You need to link Roblox account to your Discord account to continue.",
+        color: 0xF1C40F
+      };
+
+      const linkButton = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+          .setLabel("Get Verified")
+          .setURL("https://verify-rover.cz/verify/?guild=8858055082054886")
+          .setStyle(ButtonStyle.Link)
+      );
+
+      return await interaction.reply({
+        embeds: [getVerifiedEmbed],
+        components: [linkButton],
+        flags: MessageFlags.Ephemeral
+      });
+    }const [customId, ...args] = interaction.customId.split(':');
           const button = client.buttons.get(customId);
 
           if (!button) {

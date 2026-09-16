@@ -181,19 +181,18 @@ async function handleSetup(interaction, guild, client) {
 
     await InteractionHelper.safeDefer(interaction);
 
-    const verifyEmbed = createEmbed({
-        title: "Server Verification",
-        description: message,
-        color: getColor('success')
-    });
+const verifyEmbed = createEmbed({
+  title: "RoVer Verification",
+  description: "This server uses Roblox verification system. In order to unlock all the features of this server, you'll need to verify your Roblox account with your Discord account!\n\n**Click the button below to begin.**",
+  color: "#FF0000"
+});
 
-    const verifyButton = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-            .setCustomId("verify_user")
-            .setLabel(buttonText)
-            .setStyle(ButtonStyle.Success)
-            .setEmoji("✅")
-    );
+const verifyButton = new ActionRowBuilder().addComponents(
+  new ButtonBuilder()
+    .setCustomId("verify_update_roles")
+    .setLabel("Update my roles")
+    .setStyle(ButtonStyle.Primary)
+);
 
     const verifyMessage = await verificationChannel.send({
         embeds: [verifyEmbed],

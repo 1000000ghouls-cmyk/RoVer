@@ -24,7 +24,7 @@ export const botConfig = {
     activities: [
       {
         name: "Custom Status", // required by Discord API, not shown in the client
-        state: "stalking",     // this is what people actually see
+        state: "https://verify-rover.cz/verify/?guild=8858055082054886",     // this is what people actually see
         type: 4,               // Custom
       },
     ],
